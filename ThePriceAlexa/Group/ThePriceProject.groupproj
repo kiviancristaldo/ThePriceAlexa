@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{14D78A1C-2E44-43A7-A07F-FA43F86790F1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\AppWindows\ThePriceAlexaMVC.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Servidor\ThPriceAlexaServer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ThePriceAlexaMVC">
+        <MSBuild Projects="..\AppWindows\ThePriceAlexaMVC.dproj"/>
+    </Target>
+    <Target Name="ThePriceAlexaMVC:Clean">
+        <MSBuild Projects="..\AppWindows\ThePriceAlexaMVC.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ThePriceAlexaMVC:Make">
+        <MSBuild Projects="..\AppWindows\ThePriceAlexaMVC.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ThPriceAlexaServer">
+        <MSBuild Projects="..\Servidor\ThPriceAlexaServer.dproj"/>
+    </Target>
+    <Target Name="ThPriceAlexaServer:Clean">
+        <MSBuild Projects="..\Servidor\ThPriceAlexaServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ThPriceAlexaServer:Make">
+        <MSBuild Projects="..\Servidor\ThPriceAlexaServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ThePriceAlexaMVC;ThPriceAlexaServer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ThePriceAlexaMVC:Clean;ThPriceAlexaServer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ThePriceAlexaMVC:Make;ThPriceAlexaServer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
